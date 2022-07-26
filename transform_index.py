@@ -1,5 +1,6 @@
 import pos
-
+import re
+'''
 def get_txt_ind(txt: str, ind_pos: int) -> int:
     txt_morph = pos.get_morphs(txt)
     txt_word = txt.split()
@@ -16,7 +17,21 @@ def get_txt_ind(txt: str, ind_pos: int) -> int:
             if word_char_count == pos_char_count:
                 ind_txt = pos_char_count+ind+1
     return ind_txt
-
+'''
+def get_text_ind(sentence, ind_pos):
+    txt_morph = pos.get_morphs(sentence)
+    ind_in_sentence =0
+    copy = sentence[ind_in_sentence:]
+    #print(txt_morph)
+    for ind, morph in enumerate(txt_morph):
+        while copy[0] ==' ':
+            ind_in_sentence += 1
+            copy = sentence[ind_in_sentence]
+        if ind == ind_pos:
+            return ind_in_sentence
+        else:
+            ind_in_sentence += len(morph)
+            copy = sentence[ind_in_sentence:]
 def get_pos_ind(txt: str, ind_txt: int) -> int:
     txt_morph = pos.get_morphs(txt)
     txt_word = txt[:ind_txt+1].split()
@@ -34,9 +49,13 @@ def get_pos_ind(txt: str, ind_txt: int) -> int:
 
 if __name__ == "__main__":
     txt = '오월이 찾아왔습니다.'
+    '''
     print("TXT INDEX:", txt[0], 0)
     print("POS INDEX:", pos.get_pos(txt)[get_pos_ind(txt, 0)], get_pos_ind(txt, 0))
 
     print(get_txt_ind(txt,0))
 
     print("TXT INDEX RETURN:", txt[get_txt_ind(txt, get_pos_ind(txt, 0))], get_txt_ind(txt, get_pos_ind(txt, 0)))
+    '''
+    print(pos.get_pos("그러면 삼 백 칠 하 이게맞나"))
+    print(get_text_ind("그러면 삼 백 칠 하 이게맞나",5))

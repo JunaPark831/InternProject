@@ -120,7 +120,7 @@ def ToDigit(word: str) -> str:
     """
     외부파일에서 이 함수가 사용되어 나머지 함수들을 거친다. main함수 역할
     """
-
+    
     list_word_into_single_letter = SplitNumber(word)
     if type(CheckAllString(list_word_into_single_letter)) == str:
         return CheckAllString(list_word_into_single_letter)
